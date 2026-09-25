@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Sora", "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Semantic Color Mapping */
+  --color-background: #0b1417;
+  --color-foreground: #f1f5f9;
+  --color-card: #111e22;
+  --color-card-foreground: #f8fafc;
+  --color-popover: #111e22;
+  --color-popover-foreground: #f8fafc;
+  --color-primary: #4a7c8f;
+  --color-primary-hover: #3b6777;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #1a2f37;
+  --color-secondary-foreground: #ffffff;
+  --color-muted: #17272d;
+  --color-muted-foreground: #cbd5e1;
+  --color-accent: #24404b;
+  --color-accent-foreground: #ffffff;
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #ffffff;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-input: rgba(255, 255, 255, 0.12);
+  --color-ring: #4a7c8f;
+
+  /* Brand Palette (Teal & Slate) */
+  --color-brand-50: #f0f7f9;
+  --color-brand-100: #d9eaef;
+  --color-brand-200: #b5d6e1;
+  --color-brand-300: #8abacb;
+  --color-brand-400: #4a7c8f;
+  --color-brand-500: #3b6777;
+  --color-brand-600: #2c515f;
+  --color-brand-700: #24404b;
+  --color-brand-800: #1a2f37;
+  --color-brand-900: #111e22;
+  --color-brand-950: #0b1417;
+}
+
+:root {
+  --radius: 0.75rem;
+  --background: #0b1417;
+  --foreground: #f1f5f9;
+  --card: #111e22;
+  --card-foreground: #f8fafc;
+  --popover: #111e22;
+  --popover-foreground: #f8fafc;
+  --primary: #4a7c8f;
+  --primary-hover: #3b6777;
+  --primary-foreground: #ffffff;
+  --secondary: #1a2f37;
+  --secondary-foreground: #ffffff;
+  --muted: #17272d;
+  --muted-foreground: #cbd5e1;
+  --accent: #24404b;
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.12);
+  --ring: #4a7c8f;
+
+  --brand-primary: #4a7c8f;
+  --brand-secondary: #1a2f37;
+  --brand-green: #059669;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    min-height: 100vh;
+  }
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.015em;
+  }
+  code, kbd, pre, .font-mono {
+    font-family: var(--font-mono);
+  }
+  button,
+  [role="button"],
+  a,
+  select,
+  summary,
+  [tabindex="0"],
+  input[type="submit"],
+  input[type="button"],
+  input[type="reset"],
+  input[type="checkbox"],
+  input[type="radio"],
+  .cursor-pointer {
+    cursor: pointer !important;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0b1417;
+}
+::-webkit-scrollbar-thumb {
+  background: #1a2f37;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #24404b;
+}
+
+@utility surface-card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.3);
+}
+
+@utility glass-panel {
+  background: rgba(17, 30, 34, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@utility grid-paper {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
