@@ -5,7 +5,7 @@ services:
   # INFRASTRUCTURE
   # ----------------------------------------------------
   postgres:
-    image: postgres:15-alpine
+    image: postgres:16-alpine
     container_name: analytics-postgres
     environment:
       POSTGRES_USER: postgres
@@ -70,8 +70,9 @@ services:
       dockerfile: Dockerfile
     container_name: analytics-backend
     ports:
-      - "3000:3000"
+      - "3005:3000"
     environment:
+      - PORT=3000
       - DB_HOST=postgres
       - DB_PORT=5432
       - DB_USERNAME=postgres
@@ -101,8 +102,8 @@ services:
     ports:
       - "3001:3000"
     environment:
-      # Browser needs to hit the API directly. Assuming localhost:3000 is exposed to host.
-      - NEXT_PUBLIC_API_URL=http://localhost:3000
+      # Browser needs to hit the API directly. Assuming localhost:3005 is exposed to host.
+      - NEXT_PUBLIC_API_URL=http://localhost:3005
     depends_on:
       - backend
 

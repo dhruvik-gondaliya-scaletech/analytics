@@ -45,7 +45,7 @@ export class IngestionService {
     const received_at = new Date().toISOString();
     return {
       ...event,
-      event_id: event.event_id || `evt_${uuidv4().replace(/-/g, '')}`,
+      event_id: event.event_id || uuidv4(),
       timestamp: event.occurred_at || received_at,
       received_at,
     };

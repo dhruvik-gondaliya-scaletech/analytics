@@ -30,6 +30,7 @@ import { ExportModule } from './modules/export/export.module';
 import { AlertModule } from './modules/alert/alert.module';
 import { HealthModule } from './modules/health/health.module';
 import { AuditModule } from './modules/audit/audit.module';
+import { WorkerModule } from './modules/worker/worker.module';
 
 @Module({
   imports: [
@@ -40,6 +41,7 @@ import { AuditModule } from './modules/audit/audit.module';
     ClickhouseModule,
     AuthModule,
     IngestionModule,
+    WorkerModule,
     DashboardModule,
     AnalyticsconfigModule,
     EventModule,
