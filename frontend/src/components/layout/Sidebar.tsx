@@ -55,7 +55,7 @@ export function Sidebar({ className }: { className?: string }) {
   };
 
   return (
-    <div className={cn("pb-12 h-screen border-r border-border bg-background flex flex-col", className)}>
+    <div className={cn("pb-6 h-full flex flex-col", className)}>
       <div className="space-y-4 py-6 flex-1">
         <div className="px-6 pb-2">
           <h2 className="mb-1 text-2xl font-bold tracking-tight text-brand-deep flex items-center gap-3">
@@ -87,15 +87,14 @@ export function Sidebar({ className }: { className?: string }) {
                             ? "bg-primary/10 text-primary font-semibold"
                             : "text-foreground hover:bg-accent hover:text-foreground"
                         )}
-                        asChild
+                        nativeButton={false}
+                        render={<Link href={item.href} />}
                       >
-                        <Link href={item.href}>
-                          <item.icon className={cn(
-                            "mr-3 h-[18px] w-[18px]",
-                            isActive ? "text-primary" : "text-muted-foreground"
-                          )} />
-                          {item.title}
-                        </Link>
+                        <item.icon className={cn(
+                          "mr-3 h-[18px] w-[18px]",
+                          isActive ? "text-primary" : "text-muted-foreground"
+                        )} />
+                        {item.title}
                       </Button>
                     );
                   })}

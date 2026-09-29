@@ -13,7 +13,7 @@ export class DurationService {
     // Default placeholder query for duration
     const query = `
       SELECT count(*) as count, toDate(occurred_at) as date
-      FROM events
+      FROM analytics_events
       WHERE occurred_at >= {startDate:DateTime}
         AND occurred_at <= {endDate:DateTime}
       GROUP BY date

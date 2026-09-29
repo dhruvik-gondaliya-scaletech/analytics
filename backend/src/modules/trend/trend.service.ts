@@ -19,7 +19,7 @@ export class TrendService {
       SELECT 
         formatDateTime(occurred_at, '${dateIntervalFormat}') as time_bucket,
         count(*) as count
-      FROM events
+      FROM analytics_events
       WHERE event_name = {eventName:String}
         AND occurred_at >= {startDate:DateTime}
         AND occurred_at <= {endDate:DateTime}

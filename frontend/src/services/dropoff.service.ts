@@ -11,7 +11,7 @@ class DropoffService {
     const response = await http.get<any>(API_ROUTES.DROPOFF.BASE, {
       params,
     });
-    return response.data;
+    return response.data?.data || response.data || [];
   }
 }
 

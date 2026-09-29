@@ -18,8 +18,8 @@ export class RetentionService {
         toDate(t1.occurred_at) as cohort_date,
         dateDiff('day', toDate(t1.occurred_at), toDate(t2.occurred_at)) as day_offset,
         uniqExact(t1.user_id) as users_count
-      FROM events t1
-      LEFT JOIN events t2 
+      FROM analytics_events t1
+      LEFT JOIN analytics_events t2 
         ON t1.user_id = t2.user_id 
         AND t2.event_name = {returnEvent:String}
         AND toDate(t2.occurred_at) >= toDate(t1.occurred_at)

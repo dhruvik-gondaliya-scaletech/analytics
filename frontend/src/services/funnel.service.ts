@@ -10,10 +10,14 @@ export interface FunnelQueryParams {
 
 class FunnelService {
   async getFunnel(params: FunnelQueryParams): Promise<any> {
+    const formattedParams = {
+      ...params,
+      steps: Array.isArray(params.steps) ? params.steps.join(',') : params.steps
+    };
     const response = await http.get<any>(API_ROUTES.FUNNEL.BASE, {
-      params,
+      params: formattedParams,
     });
-    return response.data;
+    return response.data?.data || response.data || [];
   }
 }
 

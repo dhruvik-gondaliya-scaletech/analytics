@@ -22,7 +22,9 @@ export class FunnelController {
     @Query('endDate') endDate: string,
     @Query('window') window?: number,
   ) {
-    const stepsArray = Array.isArray(steps) ? steps : [steps];
+    const stepsArray = Array.isArray(steps) 
+      ? steps 
+      : (typeof steps === 'string' ? steps.split(',').map(s => s.trim()).filter(Boolean) : []);
     return this.funnelService.getFunnel(stepsArray, startDate, endDate, window || 60);
   }
 }

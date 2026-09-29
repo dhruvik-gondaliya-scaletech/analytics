@@ -14,7 +14,7 @@ class ComparisonService {
     const response = await http.get<any>(API_ROUTES.COMPARISON.BASE, {
       params,
     });
-    return response.data;
+    return response.data?.data || response.data || [];
   }
 }
 

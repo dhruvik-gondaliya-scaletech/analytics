@@ -11,7 +11,7 @@ class EventService {
     const response = await http.get<any>(API_ROUTES.EVENT.BASE, {
       params,
     });
-    return response.data;
+    return response.data?.data || response.data || [];
   }
 }
 

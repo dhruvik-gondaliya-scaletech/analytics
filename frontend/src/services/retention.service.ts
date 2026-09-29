@@ -13,7 +13,7 @@ class RetentionService {
     const response = await http.get<any>(API_ROUTES.RETENTION.BASE, {
       params,
     });
-    return response.data;
+    return response.data?.data || response.data || [];
   }
 }
 

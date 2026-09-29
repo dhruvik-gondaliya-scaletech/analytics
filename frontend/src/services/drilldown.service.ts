@@ -11,7 +11,7 @@ class DrilldownService {
     const response = await http.get<any>(API_ROUTES.DRILLDOWN.BASE, {
       params,
     });
-    return response.data;
+    return response.data?.data || response.data || [];
   }
 }
 

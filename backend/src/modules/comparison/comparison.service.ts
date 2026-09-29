@@ -14,7 +14,7 @@ export class ComparisonService {
       SELECT 
         'base' as period,
         count(*) as count
-      FROM events
+      FROM analytics_events
       WHERE event_name = {eventName:String}
         AND occurred_at >= {baseStartDate:DateTime}
         AND occurred_at <= {baseEndDate:DateTime}
@@ -22,7 +22,7 @@ export class ComparisonService {
       SELECT 
         'compare' as period,
         count(*) as count
-      FROM events
+      FROM analytics_events
       WHERE event_name = {eventName:String}
         AND occurred_at >= {compareStartDate:DateTime}
         AND occurred_at <= {compareEndDate:DateTime}

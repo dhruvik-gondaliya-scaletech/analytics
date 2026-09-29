@@ -13,7 +13,7 @@ class TrendService {
     const response = await http.get<any>(API_ROUTES.TRENDS.BASE, {
       params,
     });
-    return response.data;
+    return response.data?.data || response.data || [];
   }
 }
 

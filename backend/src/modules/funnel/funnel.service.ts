@@ -36,7 +36,7 @@ export class FunnelService {
             occurred_at,
             ${conditions}
           ) as level
-        FROM events
+        FROM analytics_events
         WHERE occurred_at >= {startDate:DateTime}
           AND occurred_at <= {endDate:DateTime}
         GROUP BY user_id

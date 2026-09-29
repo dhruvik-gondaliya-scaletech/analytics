@@ -11,7 +11,7 @@ class DurationService {
     const response = await http.get<any>(API_ROUTES.DURATION.BASE, {
       params,
     });
-    return response.data;
+    return response.data?.data || response.data || [];
   }
 }
 
