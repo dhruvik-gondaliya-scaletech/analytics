@@ -12,7 +12,7 @@ export interface Retention {
 }
 
 export function RetentionContainer() {
-  const { data, isLoading, error } = useRetention({ cohortEvent: 'signup', returnEvent: 'login', startDate: new Date().toISOString(), endDate: new Date().toISOString() });
+  const { data, isLoading, error } = useRetention({ cohortEvent: 'signup', returnEvent: 'login', startDate: '2026-01-01T00:00:00.000Z', endDate: '2026-01-01T00:00:00.000Z' });
 
   if (isLoading) {
     return (

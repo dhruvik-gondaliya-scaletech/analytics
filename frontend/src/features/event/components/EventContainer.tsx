@@ -12,7 +12,7 @@ export interface Event {
 }
 
 export function EventContainer() {
-  const { data, isLoading, error } = useEvent({ startDate: new Date().toISOString(), endDate: new Date().toISOString() });
+  const { data, isLoading, error } = useEvent({ startDate: '2026-01-01T00:00:00.000Z', endDate: '2026-01-01T00:00:00.000Z' });
 
   if (isLoading) {
     return (

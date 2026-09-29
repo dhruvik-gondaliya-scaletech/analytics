@@ -17,12 +17,12 @@ export class TrendService {
 
     const query = `
       SELECT 
-        formatDateTime(occurred_at, '${dateIntervalFormat}') as time_bucket,
+        formatDateTime(timestamp, '${dateIntervalFormat}') as time_bucket,
         count(*) as count
       FROM analytics_events
       WHERE event_name = {eventName:String}
-        AND occurred_at >= {startDate:DateTime}
-        AND occurred_at <= {endDate:DateTime}
+        AND timestamp >= {startDate:DateTime}
+        AND timestamp <= {endDate:DateTime}
       GROUP BY time_bucket
       ORDER BY time_bucket ASC
     `;

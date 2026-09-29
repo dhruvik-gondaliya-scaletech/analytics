@@ -12,7 +12,7 @@ export interface Duration {
 }
 
 export function DurationContainer() {
-  const { data, isLoading, error } = useDuration({ startDate: new Date().toISOString(), endDate: new Date().toISOString() });
+  const { data, isLoading, error } = useDuration({ startDate: '2026-01-01T00:00:00.000Z', endDate: '2026-01-01T00:00:00.000Z' });
 
   if (isLoading) {
     return (

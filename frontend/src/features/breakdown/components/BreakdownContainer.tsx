@@ -12,7 +12,7 @@ export interface Breakdown {
 }
 
 export function BreakdownContainer() {
-  const { data, isLoading, error } = useBreakdown({ startDate: new Date().toISOString(), endDate: new Date().toISOString() });
+  const { data, isLoading, error } = useBreakdown({ startDate: '2026-01-01T00:00:00.000Z', endDate: '2026-01-01T00:00:00.000Z' });
 
   if (isLoading) {
     return (

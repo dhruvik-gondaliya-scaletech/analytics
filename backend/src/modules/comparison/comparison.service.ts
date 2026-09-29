@@ -16,16 +16,16 @@ export class ComparisonService {
         count(*) as count
       FROM analytics_events
       WHERE event_name = {eventName:String}
-        AND occurred_at >= {baseStartDate:DateTime}
-        AND occurred_at <= {baseEndDate:DateTime}
+        AND timestamp >= {baseStartDate:DateTime}
+        AND timestamp <= {baseEndDate:DateTime}
       UNION ALL
       SELECT 
         'compare' as period,
         count(*) as count
       FROM analytics_events
       WHERE event_name = {eventName:String}
-        AND occurred_at >= {compareStartDate:DateTime}
-        AND occurred_at <= {compareEndDate:DateTime}
+        AND timestamp >= {compareStartDate:DateTime}
+        AND timestamp <= {compareEndDate:DateTime}
     `;
 
     try {

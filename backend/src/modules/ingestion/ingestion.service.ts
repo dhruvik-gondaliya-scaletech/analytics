@@ -46,7 +46,7 @@ export class IngestionService {
     return {
       ...event,
       event_id: event.event_id || `evt_${uuidv4().replace(/-/g, '')}`,
-      occurred_at: event.occurred_at || received_at,
+      timestamp: event.occurred_at || received_at,
       received_at,
     };
   }

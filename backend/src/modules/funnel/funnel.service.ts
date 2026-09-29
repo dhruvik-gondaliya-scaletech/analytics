@@ -33,12 +33,12 @@ export class FunnelService {
         SELECT 
           user_id,
           windowFunnel(${windowMinutes * 60})(
-            occurred_at,
+            toDateTime(timestamp),
             ${conditions}
           ) as level
         FROM analytics_events
-        WHERE occurred_at >= {startDate:DateTime}
-          AND occurred_at <= {endDate:DateTime}
+        WHERE timestamp >= {startDate:DateTime}
+          AND timestamp <= {endDate:DateTime}
         GROUP BY user_id
       )
       GROUP BY level

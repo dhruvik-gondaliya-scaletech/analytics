@@ -12,7 +12,7 @@ export interface Comparison {
 }
 
 export function ComparisonContainer() {
-  const { data, isLoading, error } = useComparison({ eventName: 'test', baseStartDate: new Date().toISOString(), baseEndDate: new Date().toISOString(), compareStartDate: new Date().toISOString(), compareEndDate: new Date().toISOString() });
+  const { data, isLoading, error } = useComparison({ eventName: 'test', baseStartDate: '2026-01-01T00:00:00.000Z', baseEndDate: '2026-01-01T00:00:00.000Z', compareStartDate: '2026-01-01T00:00:00.000Z', compareEndDate: '2026-01-01T00:00:00.000Z' });
 
   if (isLoading) {
     return (

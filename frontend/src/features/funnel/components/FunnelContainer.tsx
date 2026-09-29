@@ -12,7 +12,7 @@ export interface Funnel {
 }
 
 export function FunnelContainer() {
-  const { data, isLoading, error } = useFunnel({ steps: ['step1', 'step2'], startDate: new Date().toISOString(), endDate: new Date().toISOString() });
+  const { data, isLoading, error } = useFunnel({ steps: ['step1', 'step2'], startDate: '2026-01-01T00:00:00.000Z', endDate: '2026-01-01T00:00:00.000Z' });
 
   if (isLoading) {
     return (

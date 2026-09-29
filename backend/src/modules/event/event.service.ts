@@ -12,10 +12,10 @@ export class EventService {
     
     // Default placeholder query for event
     const query = `
-      SELECT count(*) as count, toDate(occurred_at) as date
+      SELECT count(*) as count, toDate(timestamp) as date
       FROM analytics_events
-      WHERE occurred_at >= {startDate:DateTime}
-        AND occurred_at <= {endDate:DateTime}
+      WHERE timestamp >= {startDate:DateTime}
+        AND timestamp <= {endDate:DateTime}
       GROUP BY date
       ORDER BY date ASC
     `;

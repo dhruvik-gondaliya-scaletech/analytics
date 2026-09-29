@@ -12,7 +12,7 @@ export interface Drilldown {
 }
 
 export function DrilldownContainer() {
-  const { data, isLoading, error } = useDrilldown({ startDate: new Date().toISOString(), endDate: new Date().toISOString() });
+  const { data, isLoading, error } = useDrilldown({ startDate: '2026-01-01T00:00:00.000Z', endDate: '2026-01-01T00:00:00.000Z' });
 
   if (isLoading) {
     return (
