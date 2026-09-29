@@ -1,0 +1,70 @@
+import { NestFactory } from '@nestjs/core';
+import helmet from 'helmet';
+import { AppModule } from './app.module';
+import { Reflector } from '@nestjs/core';
+import { ConfigService } from '@nestjs/config';
+import { ValidationPipe } from '@nestjs/common';
+import { ClassSerializerInterceptor } from '@nestjs/common';
+import basicAuth from 'express-basic-auth';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { SuccessResponseTransformer } from './core/interceptor/success-response-interceptor';
+import { LoggingInterceptor } from './core/interceptor/logging.interceptor';
+import { FailureResponseTransformer } from './core/exception-filters/failure-exception';
+
+async function bootstrap() {
+    const app = await NestFactory.create(AppModule, { rawBody: true });
+  const reflector = app.get(Reflector);
+  const config = app.get(ConfigService);
+
+  app.enableCors({
+    origin: true,
+    credentials: false,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    allowedHeaders: 'Content-Type, Authorization',
+  });
+
+  app.use(helmet());
+  app.useGlobalFilters(new FailureResponseTransformer());
+  app.useGlobalInterceptors(
+    new LoggingInterceptor(),
+    new ClassSerializerInterceptor(reflector),
+    new SuccessResponseTransformer(),
+  );
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      forbidUnknownValues: true,
+    }),
+  );
+
+  app.setGlobalPrefix('api');
+
+  app.use(
+    ['/docs', '/docs-json'],
+    basicAuth({
+      challenge: true,
+      users: {
+        [config.get<string>('SWAGGER_USER') || 'admin']:
+          config.get<string>('SWAGGER_PASSWORD') || 'kollabary@2026',
+      },
+    }),
+  );
+
+  const swaggerConfig = new DocumentBuilder()
+    .setTitle('Kollabary API')
+    .setDescription('API documentation for the Kollabary backend')
+    .setVersion('1.0')
+    .addBearerAuth()
+    .build();
+
+  const document = SwaggerModule.createDocument(app, swaggerConfig);
+  SwaggerModule.setup('docs', app, document);
+
+  const PORT = config.get<number>('PORT') || 3000;
+
+  await app.listen(PORT);
+}
+bootstrap();
