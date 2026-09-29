@@ -4,12 +4,12 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import { 
-  LayoutDashboard, 
-  Activity, 
-  Users, 
-  Filter, 
-  Settings, 
+import {
+  LayoutDashboard,
+  Activity,
+  Users,
+  Filter,
+  Settings,
   Bell,
   LineChart,
   LogOut
@@ -25,23 +25,23 @@ const sidebarNavItems = [
     title: "Overview",
     items: [
       { title: "Dashboards", href: "/dashboard", icon: LayoutDashboard },
-      { title: "Events", href: "/events", icon: Activity },
-      { title: "Funnels", href: "/funnels", icon: Filter },
-      { title: "Trends", href: "/trends", icon: LineChart },
+      { title: "Events", href: "/event", icon: Activity },
+      { title: "Funnels", href: "/funnel", icon: Filter },
+      { title: "Trends", href: "/trend", icon: LineChart },
     ]
   },
   {
     title: "Audience",
     items: [
-      { title: "Identities", href: "/identities", icon: Users },
-      { title: "User Profiles", href: "/profiles", icon: Users },
+      { title: "Identities", href: "/identity", icon: Users },
+      { title: "User Profiles", href: "/userprofile", icon: Users },
     ]
   },
   {
     title: "Settings",
     items: [
-      { title: "Alerts", href: "/alerts", icon: Bell },
-      { title: "Configuration", href: "/config", icon: Settings },
+      { title: "Alerts", href: "/alert", icon: Bell },
+      { title: "Configuration", href: "/analyticsconfig", icon: Settings },
     ]
   }
 ];
@@ -83,15 +83,15 @@ export function Sidebar({ className }: { className?: string }) {
                         variant="ghost"
                         className={cn(
                           "w-full justify-start transition-colors duration-150 h-9 px-3 font-medium text-[14px]",
-                          isActive 
-                            ? "bg-primary/10 text-primary font-semibold" 
+                          isActive
+                            ? "bg-primary/10 text-primary font-semibold"
                             : "text-foreground hover:bg-accent hover:text-foreground"
                         )}
                         asChild
                       >
                         <Link href={item.href}>
                           <item.icon className={cn(
-                            "mr-3 h-[18px] w-[18px]", 
+                            "mr-3 h-[18px] w-[18px]",
                             isActive ? "text-primary" : "text-muted-foreground"
                           )} />
                           {item.title}
@@ -106,9 +106,9 @@ export function Sidebar({ className }: { className?: string }) {
         </ScrollArea>
       </div>
       <div className="px-6 pb-6 mt-auto">
-        <Button 
-          variant="outline" 
-          className="w-full justify-start text-muted-foreground hover:text-foreground border-border hover:bg-accent transition-colors" 
+        <Button
+          variant="outline"
+          className="w-full justify-start text-muted-foreground hover:text-foreground border-border hover:bg-accent transition-colors"
           onClick={handleLogout}
         >
           <LogOut className="mr-2 h-4 w-4" />

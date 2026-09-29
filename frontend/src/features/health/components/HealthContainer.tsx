@@ -1,7 +1,9 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { HealthView } from './HealthView';
+import { useHealth } from '../../../hooks/useHealth';
+
 
 export interface Health {
   id: string;
@@ -10,30 +12,7 @@ export interface Health {
 }
 
 export function HealthContainer() {
-  const [data, setData] = useState<Health[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setIsLoading(true);
-        // API removed
-        setTimeout(() => {
-          setData([
-            { id: '1', name: 'Sample Health A', created_at: new Date().toISOString() },
-            { id: '2', name: 'Sample Health B', created_at: new Date(Date.now() - 86400000).toISOString() }
-          ]);
-          setIsLoading(false);
-        }, 600);
-        setIsLoading(false);
-      } catch (err: any) {
-        setError(err.message || 'Failed to load data');
-        setIsLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
+  const { data, isLoading, error } = useHealth();
 
   if (isLoading) {
     return (
@@ -52,10 +31,10 @@ export function HealthContainer() {
     return (
       <div className="p-6 bg-destructive/10 border border-destructive/20 rounded-xl text-destructive">
         <h3 className="font-bold mb-2">Error Loading Data</h3>
-        <p>{error}</p>
+        <p>{(error as Error)?.message || 'Failed to load data'}</p>
       </div>
     );
   }
 
-  return <HealthView data={data} />;
+  return <HealthView data={data || []} />;
 }

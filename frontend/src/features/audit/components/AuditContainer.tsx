@@ -1,7 +1,9 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { AuditView } from './AuditView';
+import { useAudit } from '../../../hooks/useAudit';
+
 
 export interface Audit {
   id: string;
@@ -10,30 +12,7 @@ export interface Audit {
 }
 
 export function AuditContainer() {
-  const [data, setData] = useState<Audit[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setIsLoading(true);
-        // API removed
-        setTimeout(() => {
-          setData([
-            { id: '1', name: 'Sample Audit A', created_at: new Date().toISOString() },
-            { id: '2', name: 'Sample Audit B', created_at: new Date(Date.now() - 86400000).toISOString() }
-          ]);
-          setIsLoading(false);
-        }, 600);
-        setIsLoading(false);
-      } catch (err: any) {
-        setError(err.message || 'Failed to load data');
-        setIsLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
+  const { data, isLoading, error } = useAudit();
 
   if (isLoading) {
     return (
@@ -52,10 +31,10 @@ export function AuditContainer() {
     return (
       <div className="p-6 bg-destructive/10 border border-destructive/20 rounded-xl text-destructive">
         <h3 className="font-bold mb-2">Error Loading Data</h3>
-        <p>{error}</p>
+        <p>{(error as Error)?.message || 'Failed to load data'}</p>
       </div>
     );
   }
 
-  return <AuditView data={data} />;
+  return <AuditView data={data || []} />;
 }
