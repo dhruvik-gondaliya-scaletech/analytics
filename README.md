@@ -22,7 +22,7 @@ The easiest way to start the entire ecosystem (Infrastructure + Backend API + Fr
 
 1. From the root `analytics` directory, run:
    ```bash
-   docker-compose up --build
+   docker compose up --build
    ```
 2. Wait for the containers to initialize.
 3. Access the platform:
@@ -34,7 +34,7 @@ If you are actively modifying the code, it's faster to run the infrastructure vi
 
 1. **Start Infrastructure only**:
    ```bash
-   docker-compose up postgres clickhouse redpanda -d
+   docker compose up postgres clickhouse redpanda -d
    ```
 
 2. **Start Backend**:
@@ -67,7 +67,7 @@ NODE_ENV=development
 
 # DATABASE (POSTGRES)
 DB_HOST=localhost
-DB_PORT=5432
+DB_PORT=5433
 DB_USERNAME=postgres
 DB_PASSWORD=postgres
 DB_NAME=analytics_db
@@ -96,6 +96,6 @@ NEXT_PUBLIC_API_URL=http://localhost:3000/api
 ## 📡 Default Ports Map
 - **Frontend UI:** `3001`
 - **Backend API:** `3000`
-- **PostgreSQL:** `5432`
+- **PostgreSQL:** `5433`
 - **ClickHouse:** `8123` (HTTP) / `9000` (TCP)
 - **Redpanda (Kafka API):** `9092` / `19092`

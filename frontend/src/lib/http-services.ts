@@ -8,9 +8,11 @@ import { API_CONFIG, AUTH_STORAGE_KEYS, FRONTEND_ROUTES } from "./constants";
 import { getStorageItem, removeStorageItems } from "./storage";
 
 export interface ApiSuccessResponse<T> {
-    success: true;
+    isError: false;
     data: T;
-    timestamp: string;
+    statusCode: number;
+    message: string[];
+    metaData?: any;
 }
 
 export interface ApiErrorResponse {
@@ -62,7 +64,7 @@ class HttpService {
             (config: InternalAxiosRequestConfig) => {
                 if (typeof window !== "undefined") {
                     try {
-                        const token = getStorageItem(AUTH_STORAGE_KEYS.ACCESS_TOKEN);
+                        const token = getStorageItem(AUTH_STORAGE_KEYS.ACCESS_TOKEN) || process.env.NEXT_PUBLIC_ANALYTICS_API_KEY;
                         if (token && !config.headers.Authorization) {
                             config.headers.Authorization = `Bearer ${token}`;
                         }
@@ -84,8 +86,8 @@ class HttpService {
                 if (
                     envelope &&
                     typeof envelope === "object" &&
-                    "success" in envelope &&
-                    envelope.success === true &&
+                    "isError" in envelope &&
+                    envelope.isError === false &&
                     "data" in envelope
                 ) {
                     return {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useDashboards } from "@/hooks/useDashboards";
-import DashboardView from "@/components/DashboardView";
+import DashboardView from "@/features/dashboard/components/DashboardView";
 
 // Smart Component: Handles data fetching, state management, and passing props
 export default function DashboardPage() {

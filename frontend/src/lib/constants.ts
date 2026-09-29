@@ -18,6 +18,12 @@ export const API_ROUTES = {
     BASE: "/dashboards",
     BY_ID: (id: string) => `/dashboards/${id}`,
   },
+  INGESTION: {
+    EVENTS: "/analytics/events",
+  },
+  TRENDS: {
+    BASE: "/query/trends",
+  },
   // Add other endpoints here as they are developed
 };
 
@@ -25,5 +31,8 @@ export const QUERY_KEYS = {
   DASHBOARDS: {
     ALL: ["dashboards"] as const,
     DETAIL: (id: string) => ["dashboards", id] as const,
+  },
+  TRENDS: {
+    ALL: ["trends"] as const,
   },
 };
